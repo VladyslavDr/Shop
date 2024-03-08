@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ShopConsoleApp.Services.CartService">
+    <Position X="4.5" Y="5" Width="1.5" />
+    <Members>
+      <Method Name="CreateCart" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAgEAAAAAAQAAAAAAAAAAAQAAABEAAAAA=</HashCode>
+      <FileName>Services\CartService.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_cartDao" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ShopConsoleApp.Services.UserService">
+    <Position X="9.25" Y="5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAEAAAAAAAgAgAAABAAAAQAAQAAAAAAA=</HashCode>
+      <FileName>Services\UserService.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="UserDao" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ShopConsoleApp.Dao.MemoryCartDao">
+    <Position X="1.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAEAAAAAEAAAEAAAAAAQEAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Dao\MemoryCartDao.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ShopConsoleApp.Dao.MemoryUserDao">
+    <Position X="12.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAIAEAAAAAAAAAAACCAAIAgQAAAAAMAAIA=</HashCode>
+      <FileName>Dao\MemoryUserDao.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ShopConsoleApp.ShopController">
+    <Position X="6.75" Y="1.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAAAAAAAAAgAAgBAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>ShopController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_userService" />
+      <Field Name="_cartService" />
+    </ShowAsAssociation>
+  </Class>
+  <Interface Name="ShopConsoleApp.Dao.ICartDao">
+    <Position X="1.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAAAAAAQEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Dao\ICartDao.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ShopConsoleApp.Dao.IUserDao">
+    <Position X="12.25" Y="5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAAAAAAAAACCAAAAgAAAAAAMAAIA=</HashCode>
+      <FileName>Dao\IUserDao.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using ShopConsoleApp.Models.ProductModels;
 
 namespace ShopConsoleApp.Models;
 

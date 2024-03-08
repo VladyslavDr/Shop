@@ -1,7 +1,6 @@
 ﻿using log4net;
 using ShopConsoleApp.Exceptions;
 using ShopConsoleApp.Models;
-using ShopConsoleApp.Services;
 
 namespace ShopConsoleApp.Dao;
 
@@ -10,7 +9,7 @@ public class MemoryUserDao : IUserDao // Data Access object pattern
     private static MemoryUserDao _instance = null;
     private readonly Dictionary<Guid, UserModel> _users = [];
 
-    private static readonly ILog Log = LogManager.GetLogger(typeof(MemoryUserDao));
+    private readonly ILog _log = LogManager.GetLogger(typeof(MemoryUserDao));
 
     private MemoryUserDao()
     {
@@ -21,10 +20,10 @@ public class MemoryUserDao : IUserDao // Data Access object pattern
     {
         _users.Add(user.Id, user);
 
-        Log.Info($"User with email {user.Email} has been successfully inserted.");
+        _log.Info($"User with email {user.Email} has been successfully inserted.");
     }
-    public bool IsExists(Guid id) => _users.ContainsKey(id);
-    public bool IsExists(string email)
+    public bool Exists(Guid id) => _users.ContainsKey(id);
+    public bool Exists(string email)
     {
         foreach (var user in _users.Values)
         {
@@ -49,7 +48,7 @@ public class MemoryUserDao : IUserDao // Data Access object pattern
 
         var ex = new UserNotFoundException(email);
 
-        Log.Error($"User with email '{email}' not found.", ex);
+        _log.Error($"User with email '{email}' not found.", ex);
 
         throw ex;
     }
@@ -63,7 +62,7 @@ public class MemoryUserDao : IUserDao // Data Access object pattern
             {
                 user.Password = newPassword;
 
-                Log.Info("Password has been updated successfully.");
+                _log.Info("Password has been updated successfully.");
             }
         }
     }
@@ -76,7 +75,7 @@ public class MemoryUserDao : IUserDao // Data Access object pattern
             {
                 _users.Remove(user.Id);
 
-                Log.Info($"User with email '{email}' has been deleted.");
+                _log.Info($"User with email '{email}' has been deleted.");
             }
         }
     }

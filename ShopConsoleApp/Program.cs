@@ -1,7 +1,7 @@
 ﻿using log4net.Config;
 using System.Text;
 
-[assembly: XmlConfigurator(ConfigFile = "log4net.config", Watch = true)]
+[assembly: XmlConfigurator(ConfigFile = "Configs/log4net.config", Watch = true)]
 
 namespace ShopConsoleApp
 {
@@ -12,8 +12,6 @@ namespace ShopConsoleApp
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
             Solution.Run();
-
-            var test = new Test();
         }
     }
 }

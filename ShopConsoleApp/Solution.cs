@@ -15,5 +15,9 @@ public static class Solution
         var shop = new ShopController();
 
         shop.Register();
+        Console.WriteLine();
+
+        shop.Login();
+        Console.WriteLine();
     }
 }

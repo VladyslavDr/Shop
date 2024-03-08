@@ -1,6 +1,7 @@
 ﻿using log4net;
 using ShopConsoleApp.Enums;
 using ShopConsoleApp.Models;
+using ShopConsoleApp.Models.ProductModels;
 using ShopConsoleApp.Services;
 
 namespace ShopConsoleApp;
@@ -9,10 +10,10 @@ public class ShopController
 {
     private readonly Dictionary<Guid, (ProductModel, int)> _productsDictionary;
 
-    private static readonly ILog Log = LogManager.GetLogger(typeof(Solution));
+    private readonly ILog _log = LogManager.GetLogger(typeof(ShopController));
 
-    private static readonly UserService UserService = UserService.Instance;
-    private static readonly CartService CartService = CartService.Instance;
+    private readonly UserService _userService = UserService.Instance;
+    private readonly CartService _cartService = CartService.Instance;
 
     public ShopController()
     {
@@ -78,23 +79,49 @@ public class ShopController
 
     public void Register()
     {
-        Console.WriteLine("[__REGISTRATION__]\n");
-
-        Console.Write("Enter your email: ");
-        var email = Console.ReadLine();
-
-        Console.Write("Create a password: ");
-        var password = Console.ReadLine();
-
         try
         {
-            var user = UserService.Register(email, password);
+            Console.WriteLine("[REGISTRATION]\n");
 
-            Console.WriteLine("The The registration was successful!");
+            //Console.Write("Enter your email: ");
+            //var email = Console.ReadLine();
+            var email = "vlad@gmail.com";
+
+            //Console.Write("Create a password: ");
+            //var password = Console.ReadLine();
+            var password = "123456";
+
+            var user = _userService.Register(email, password);
+
+            Console.WriteLine("The registration was successful!");
         }
-        catch (Exception e)
+        catch (ApplicationException ex)
         {
-            Console.WriteLine(e.Message);
+            Console.WriteLine(ex.Message);
+        }
+    }
+
+    public void Login()
+    {
+        try
+        {
+            Console.WriteLine("[LOGIN]\n");
+
+            Console.Write("Enter your email: ");
+            var email = Console.ReadLine();
+
+            Console.Write("Create a password: ");
+            var password = Console.ReadLine();
+
+            _userService.Login(email, password);
+        }
+        catch (ApplicationException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        catch (ArgumentException ex)
+        {
+            Console.WriteLine(ex.Message);
         }
     }
 }

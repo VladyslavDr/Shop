@@ -1,4 +1,4 @@
-﻿namespace ShopConsoleApp.Models;
+﻿namespace ShopConsoleApp.Models.ProductModels;
 
 public abstract class ProductModel
 {

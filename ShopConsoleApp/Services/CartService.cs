@@ -2,13 +2,14 @@
 using ShopConsoleApp.Dao;
 using ShopConsoleApp.Exceptions;
 using ShopConsoleApp.Models;
+using ShopConsoleApp.Models.ProductModels;
 
 namespace ShopConsoleApp.Services;
 
 public class CartService
 {
     private static CartService _instance = null;
-    private readonly ILog _log = LogManager.GetLogger(typeof(Solution));
+    private readonly ILog _log = LogManager.GetLogger(typeof(Solution).BaseType);
 
     // Dao pattern
     private readonly ICartDao _cartDao = MemoryCartDao.Instance; //todo static?

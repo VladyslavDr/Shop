@@ -1,6 +1,6 @@
 ﻿using ShopConsoleApp.Enums;
 
-namespace ShopConsoleApp.Models;
+namespace ShopConsoleApp.Models.ProductModels;
 
 public class ShirtProductModel(string title, decimal price) : ProductModel
 {

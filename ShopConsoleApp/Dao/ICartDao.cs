@@ -1,4 +1,5 @@
 ﻿using ShopConsoleApp.Models;
+using ShopConsoleApp.Models.ProductModels;
 
 namespace ShopConsoleApp.Dao;
 

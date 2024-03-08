@@ -1,5 +1,6 @@
 ﻿using log4net;
 using ShopConsoleApp.Models;
+using ShopConsoleApp.Models.ProductModels;
 
 namespace ShopConsoleApp.Dao;
 
@@ -8,7 +9,7 @@ public class MemoryCartDao : ICartDao
     private static MemoryCartDao _instance = null;
 
     private readonly Dictionary<Guid, CartModel> _carts = [];
-    private static readonly ILog Log = LogManager.GetLogger(typeof(MemoryCartDao));
+    private readonly ILog _log = LogManager.GetLogger(typeof(MemoryCartDao));
 
     private MemoryCartDao()
     {
@@ -18,7 +19,7 @@ public class MemoryCartDao : ICartDao
     {
         _carts.Add(cart.Id, cart);
 
-        Log.Info($"Cart for user has been successfully inserted.");
+        _log.Info($"Cart for user has been successfully inserted.");
     }
 
     // todo розібрати і можливо переписати AddProduct() від gpt

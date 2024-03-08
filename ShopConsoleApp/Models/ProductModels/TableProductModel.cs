@@ -1,4 +1,4 @@
-﻿namespace ShopConsoleApp.Models;
+﻿namespace ShopConsoleApp.Models.ProductModels;
 
 public class TableProductModel(string title, decimal price) : ProductModel
 {

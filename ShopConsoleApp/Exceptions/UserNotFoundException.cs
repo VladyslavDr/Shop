@@ -2,7 +2,7 @@
 
 public class UserNotFoundException : ApplicationException
 {
-    public UserNotFoundException() : base($"User width not found")
+    public UserNotFoundException() : base($"User not found")
     {
     }
 

@@ -7,8 +7,8 @@ public interface IUserDao
     //public void Register(string email, string password);
     public void AddUser(UserModel user);
 
-    public bool IsExists(Guid id);
-    public bool IsExists(string email);
+    public bool Exists(Guid id);
+    public bool Exists(string email);
 
     public UserModel GetById(Guid id);
     public UserModel GetByEmail(string email);
