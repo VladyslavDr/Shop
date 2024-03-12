@@ -9,7 +9,7 @@ namespace ShopConsoleApp.Services;
 public class CartService
 {
     private static CartService _instance = null;
-    private readonly ILog _log = LogManager.GetLogger(typeof(Solution).BaseType);
+    private readonly ILog _log = LogManager.GetLogger(typeof(Solution));
 
     // Dao pattern
     private readonly ICartDao _cartDao = MemoryCartDao.Instance; //todo static?
@@ -22,7 +22,7 @@ public class CartService
     public void CreateCart(Guid userId)
     {
         CartModel cart = new(userId);
-        _cartDao.AddCart(cart);
+        _cartDao.CreateCart(cart);
     }
 
     public void AddProduct(CartModel cart, ProductModel product, int count)

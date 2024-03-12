@@ -9,7 +9,6 @@ namespace ShopConsoleApp;
 
 public static class Solution
 {
-    private static readonly ILog Log = LogManager.GetLogger(typeof(Solution));
     public static void Run()
     {
         var shop = new ShopController();

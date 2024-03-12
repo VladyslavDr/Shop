@@ -16,12 +16,12 @@ public static class UserValidator
 
     public static List<ApplicationException> ValidateUserExceptions(string email, string password)
     {
-        if (!UserValidator.IsCorrectEmail(email))
+        if (!IsCorrectEmail(email))
         {
             _applicationExceptions.Add(new InvalidEmailException(email));
         }
 
-        if (!UserValidator.IsCorrectPassword(password))
+        if (!IsCorrectPassword(password))
         {
             _applicationExceptions.Add(new InvalidPasswordException());
         }

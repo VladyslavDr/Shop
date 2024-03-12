@@ -9,7 +9,7 @@ public class UserService
 {
     private static UserService _instance = null;
 
-    private readonly ILog _log = LogManager.GetLogger(typeof(UserService).BaseType);
+    private readonly ILog _log = LogManager.GetLogger(typeof(UserService));
     private readonly CartService _cartService = Services.CartService.Instance;
 
     // Dao pattern

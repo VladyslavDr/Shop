@@ -8,7 +8,8 @@ namespace ShopConsoleApp;
 
 public class ShopController
 {
-    private readonly Dictionary<Guid, (ProductModel, int)> _productsDictionary;
+    //private readonly Dictionary<Guid, (ProductModel, int)> _productsDictionary;
+    private readonly Dictionary<Guid, CartItem> _productsDictionary;
 
     private readonly ILog _log = LogManager.GetLogger(typeof(ShopController));
 
@@ -17,7 +18,7 @@ public class ShopController
 
     public ShopController()
     {
-        _productsDictionary = new Dictionary<Guid, (ProductModel, int)>();
+        _productsDictionary = [];
 
         BookProductModel book1 = new("Harry Potter and Philosopher's Stone", 325)
         {
@@ -69,12 +70,12 @@ public class ShopController
             Material = "Mango Wood, Steel"
         };
 
-        _productsDictionary.Add(book1.Id, (book1, 10));
-        _productsDictionary.Add(book2.Id, (book2, 7));
-        _productsDictionary.Add(shirt1.Id, (shirt1, 3));
-        _productsDictionary.Add(shirt2.Id, (shirt2, 5));
-        _productsDictionary.Add(table1.Id, (table1, 2));
-        _productsDictionary.Add(table2.Id, (table2, 3));
+        _productsDictionary.Add(book1.Id, new CartItem(book1, 10));
+        _productsDictionary.Add(book2.Id, new CartItem(book2, 7));
+        _productsDictionary.Add(shirt1.Id, new CartItem(shirt1, 3));
+        _productsDictionary.Add(shirt2.Id, new CartItem(shirt2, 5));
+        _productsDictionary.Add(table1.Id, new CartItem(table1, 2));
+        _productsDictionary.Add(table2.Id, new CartItem(table2, 3));
     }
 
     public void Register()
@@ -86,12 +87,12 @@ public class ShopController
             //Console.Write("Enter your email: ");
             //var email = Console.ReadLine();
             var email = "vlad@gmail.com";
-
+    
             //Console.Write("Create a password: ");
             //var password = Console.ReadLine();
             var password = "123456";
 
-            var user = _userService.Register(email, password);
+            _ = _userService.Register(email, password);
 
             Console.WriteLine("The registration was successful!");
         }
@@ -113,7 +114,7 @@ public class ShopController
             Console.Write("Create a password: ");
             var password = Console.ReadLine();
 
-            _userService.Login(email, password);
+            var user = _userService.Login(email, password);
         }
         catch (ApplicationException ex)
         {
