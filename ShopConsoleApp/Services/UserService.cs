@@ -10,7 +10,7 @@ public class UserService
     private static UserService _instance = null;
 
     private readonly ILog _log = LogManager.GetLogger(typeof(UserService));
-    private readonly CartService _cartService = Services.CartService.Instance;
+    private readonly CartService _cartService = CartService.Instance;
 
     // Dao pattern
     private static readonly IUserDao UserDao = MemoryUserDao.Instance;
@@ -46,7 +46,6 @@ public class UserService
 
         return user;
     }
-
     public UserModel Login(string email, string password)
     {
         var listExceptionsUsers = UserValidator.ValidateUserExceptions(email, password);
@@ -80,4 +79,6 @@ public class UserService
 
         throw argEx;
     }
+
+    public UserModel GetUserByEmail(string email) => UserDao.GetByEmail(email);
 }

@@ -27,7 +27,19 @@ public class CartService
 
     public void AddProduct(CartModel cart, ProductModel product, int count)
     {
-        _cartDao.AddProduct(cart, product, count);
+        _cartDao.CreateCartItem(cart, product, count);
+    }
+
+    // todo зробити одним методом
+    public void AddQuantityToProduct(CartModel cart, ProductModel product, int count)
+    {
+        foreach (var cartItem in cart.CartItems)
+        {
+            if (cartItem.ProductId == product.Id)
+            {
+                cartItem.Count += count;
+            }
+        }
     }
 
     public CartModel GetCartByUserId(Guid userId)

@@ -10,28 +10,9 @@ public class CartModel(Guid userId)
 
     public Guid Id { get; } = Guid.NewGuid();
     public Guid UserId => userId;
-
-    // public List<(ProductModel,int)> Products { get; } = [];
     public List<CartItem> CartItems { get; } = [];
-    private decimal TotalPrice
-    {
-        get
-        {
-            decimal total = 0m;
+    private decimal TotalPrice { get; set; } = 0m;
 
-            //foreach (var product in Products)
-            //{
-            //    total += product.Item1.Price * product.Item2;
-            //}
-
-            foreach (var cartItem in CartItems)
-            {
-                total += cartItem.Product.Price * cartItem.Count;
-            }
-
-            return total;
-        }
-    }
     public override string ToString()
     {
         var sbCart = new StringBuilder();
@@ -44,7 +25,8 @@ public class CartModel(Guid userId)
 
         foreach (var cartItem in CartItems)
         {
-            sbCart.Append($"{count++}) {cartItem.Product} {cartItem.Count} pcs.\n");
+            // todo ProductId -> Title
+            sbCart.Append($"{count++}) {cartItem.ProductId} {cartItem.Count} pcs.\n");
         }
 
         sbCart.Append($"Total price: {TotalPrice}\n");

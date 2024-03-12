@@ -2,9 +2,9 @@
 
 namespace ShopConsoleApp.Models;
 
-public class CartItem (ProductModel product, int count)
+public class CartItem (Guid productId, int count)
 {
     public Guid Id { get; } = Guid.NewGuid();
-    public ProductModel Product { get; set; } = product;
+    public Guid ProductId { get; } = productId;
     public int Count { get; set; } = count;
 }
