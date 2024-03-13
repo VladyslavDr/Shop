@@ -7,7 +7,7 @@ namespace ShopConsoleApp.Services;
 public class ProductService
 {
     private static ProductService _instance = null;
-    private readonly ILog _log = LogManager.GetLogger(typeof(UserService));
+    private readonly ILog _log = LogManager.GetLogger(typeof(ProductService));
 
     private readonly IProductDao _productDao = MemoryProductDao.Instance;
 
@@ -23,9 +23,5 @@ public class ProductService
     }
     public Dictionary<Guid, ProductModel> GetAllProduct() => _productDao.GetAllProduct();
 
-    public ProductModel GetProductById(Guid productId)
-    {
-        // todo implement GetProductById()
-        return null;
-    }
+    public ProductModel GetProductById(Guid productId) => _productDao.GetProductById(productId);
 }

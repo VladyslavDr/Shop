@@ -40,4 +40,9 @@ public class MemoryCartDao : ICartDao
 
         throw new ArgumentException("dsgdsfhdsdfhhdshdshdhds");
     }
+
+    public void ClearCart(CartModel cart)
+    {
+        cart.CartItems.Clear();
+    }
 }

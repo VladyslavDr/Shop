@@ -9,7 +9,7 @@ public class MemoryProductStockDao : IProductStockDao
     private static MemoryProductStockDao _instance = null;
 
     private readonly Dictionary<Guid, ProductStock> _productStocks = [];
-    private readonly ILog _log = LogManager.GetLogger(typeof(MemoryCartDao));
+    private readonly ILog _log = LogManager.GetLogger(typeof(MemoryProductStockDao));
 
     private MemoryProductStockDao()
     {

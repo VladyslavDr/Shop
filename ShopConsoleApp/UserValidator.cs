@@ -5,7 +5,6 @@ using System.Text.RegularExpressions;
 
 namespace ShopConsoleApp;
 
-//todo create class Validator
 public static class UserValidator
 {
     private const string EmailRegex = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"; //todo прочитати про регулярку

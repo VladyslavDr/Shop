@@ -15,6 +15,7 @@ public class ShopController
     private readonly CartService _cartService = CartService.Instance;
     private readonly ProductService _productService = ProductService.Instance;
     private readonly ProductStockService _productStockService = ProductStockService.Instance;
+    private readonly OrderService _orderService = OrderService.Instance;
 
     public ShopController()
     {
@@ -145,38 +146,81 @@ public class ShopController
             }
         }
 
+        _cartService.AddProduct(cart, product, count);
+    }
+    public Dictionary<Guid, ProductModel> GetAssortmentProducts() => _productService.GetAllProduct();
+
+    public void CreateOrder(string email)
+    {
+        var user = _userService.GetUserByEmail(email);
+        var cart = _cartService.GetCartByUserId(user.Id);
+        var productStocks = _productStockService.GetAllProductStocks();
+
         foreach (var cartItem in cart.CartItems)
         {
-            if (cartItem.ProductId == product.Id)
+            foreach (var productStock in productStocks)
             {
-                _cartService.AddQuantityToProduct(cart, product, count);
-                return;
+                if (cartItem.ProductId == productStock.Value.ProductId && cartItem.Count > productStock.Value.Count)
+                {
+                    Console.WriteLine("insufficient quantity of goods");
+                    return;
+                }
             }
         }
 
-        _cartService.AddProduct(cart, product, count);
+        _orderService.CreateOrder(user.Id);
+
+        Console.WriteLine("Your order has been accepted");
     }
 
-
-    //public Dictionary<Guid, ProductStock> GetAssortmentProducts() => _productStockService.GetAllProductStocks();
-    public Dictionary<Guid, ProductModel> GetAssortmentProducts() => _productService.GetAllProduct();
-
-    public void ShowCartUser(string email)
+    public void ViewCartUser(string email)
     {
+       
         var user = _userService.GetUserByEmail(email);
         var cart = _cartService.GetCartByUserId(user.Id);
+        int count = 1;
 
-        // todo ShowCartUser()
-        //var productId = cart.CartItems[0].ProductId;
-        //var product = _productService.GetProductById(productId);
-        //Console.WriteLine(product.Title);
+        Console.WriteLine("[Cart]");
+
+        if (cart.CartItems.Count == 0)
+        {
+            Console.WriteLine("Cart is empty");
+            Console.WriteLine($"Total price: {cart.TotalPrice}");
+            Console.WriteLine();
+            return;
+        }
+
+        foreach (var cartItem in cart.CartItems)
+        {
+            var productId = cartItem.ProductId;
+            var product = _productService.GetProductById(productId);
+            Console.WriteLine($"{count++}) {product} [{cartItem.Count}pcs.]");
+        }
+
+        Console.WriteLine($"Total price: {cart.TotalPrice}");
     }
 
-    public void FirstElement(string email)
+    public void ViewOrdersUser(string email)
     {
-        var user = _userService.GetUserByEmail(email);
-        var cart = _cartService.GetCartByUserId(user.Id);
 
-        _productService
+        var user = _userService.GetUserByEmail(email);
+        var orders = _orderService.GetOrdersByUserId(user.Id);
+
+        int count = 1;
+        Console.WriteLine("[ORDERS]");
+        foreach (var order in orders)
+        {
+            Console.WriteLine($"order [{order.Id}]");
+            Console.WriteLine($"status: {order.Status}");
+            foreach (var orderItems in order.CartItems)
+            {
+                var productId = orderItems.ProductId;
+                var product = _productService.GetProductById(productId);
+                Console.WriteLine($"{count++}) {product} [{orderItems.Count}pcs.]");
+            }
+
+            Console.WriteLine($"Total price: {order.TotalPrice}");
+            Console.WriteLine();
+        }
     }
 }

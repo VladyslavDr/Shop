@@ -27,12 +27,39 @@ public static class Solution
 
         foreach (var product in products)
         {
-            if (product.Title == "Harry Potter and Philosopher's Stone"
-                || product.Title == "Classic Fit Striped Poplin Fun Shirt")
+            if (product.Title == "Harry Potter and Philosopher's Stone")
             {
                 shop.AddProductToCart(email, product, 1);
-                shop.ShowCartUser(email);
+                shop.ViewCartUser(email);
+                Console.WriteLine();
             }
         }
+
+        foreach (var product in products)
+        {
+            if (product.Title == "Harry Potter and Philosopher's Stone")
+            {
+                shop.AddProductToCart(email, product, 2);
+                shop.ViewCartUser(email);
+                Console.WriteLine();
+            }
+        }
+
+        shop.CreateOrder(email);
+        shop.ViewCartUser(email);
+        shop.ViewOrdersUser(email);
+
+        foreach (var product in products)
+        {
+            if (product.Title == "Harry Potter and Philosopher's Stone")
+            {
+                shop.AddProductToCart(email, product, 5);
+                shop.ViewCartUser(email);
+                Console.WriteLine();
+            }
+        }
+
+        shop.CreateOrder(email);
+        shop.ViewOrdersUser(email);
     }
 }

@@ -8,7 +8,7 @@ namespace ShopConsoleApp.Services;
 public class ProductStockService
 {
     private static ProductStockService _instance = null;
-    private readonly ILog _log = LogManager.GetLogger(typeof(UserService));
+    private readonly ILog _log = LogManager.GetLogger(typeof(ProductStockService));
 
     private readonly IProductStockDao _productStockDao = MemoryProductStockDao.Instance;
 
